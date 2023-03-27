@@ -1,10 +1,10 @@
 import express, { Express, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { verify } from "../middleWares/verify";
-import { safeParse } from "../utilities/safeParse";
+import { safeParseFc } from "../utilities/safeParseFc";
 import { z } from "zod";
 import { getIdToken } from "../api/google";
-import {User, type UserType} from "../models/user"
+import { User, UserType} from "../models/user"
 import { env } from "../utilities/envParser";
 
 const router = express.Router();
@@ -31,7 +31,7 @@ router.post("/", verify(LoginRequestSchema), async (req: Request, res: Response)
   const idToken = await getIdToken(loginRequest.code);
   if (!idToken) return res.status(401);
   const payload: unknown = jwt.decode(idToken);
-  const result = safeParse(Payload, payload);
+  const result = safeParseFc(Payload, payload);
   
   if (!result) {
     return res.sendStatus(500);

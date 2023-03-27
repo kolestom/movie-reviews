@@ -1,7 +1,7 @@
 import { z } from "zod"
 
 
-export const safeParse = <Schema extends z.ZodTypeAny>(schema: Schema, data: unknown): z.infer<Schema> | null => {
+export const safeParseFc = <Schema extends z.ZodTypeAny>(schema: Schema, data: unknown): z.infer<Schema> | null => {
   // console.log("data",data);
   
   const result = schema.safeParse(data);
