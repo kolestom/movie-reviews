@@ -1,10 +1,10 @@
-import express, { Express, Request, Response } from "express";
-import { z } from "zod";
-import {Movie, type RevMovieType} from "../models/movies"
-import { verify } from "../middleWares/verify";
-import { safeParseFc } from "../utilities/safeParseFc";
+import express, { Express, Request, Response } from "express"
+import { z } from "zod"
+import { Movie, type RevMovieType } from "../models/movies"
+import { verify } from "../middleWares/verify"
+import { safeParseFc } from "../utilities/safeParseFc"
 
-const router = express.Router();
+const router = express.Router()
 
 const revZodSchema = z.object({
     title: z.string(),
@@ -14,7 +14,7 @@ const revZodSchema = z.object({
     review: z.object({
         reviewer: z.string(), // name
         text: z.string(),
-    })    
+    })
 })
 type revZodSchemaType = z.infer<typeof revZodSchema>
 
@@ -22,10 +22,10 @@ const findMovieSchema = z.number()
 const findReviewerSchema = z.string()
 
 
-router.post('/', verify(revZodSchema), async (req: Request, res: Response) =>{
+router.post('/', verify(revZodSchema), async (req: Request, res: Response) => {
     const result = req.body as revZodSchemaType
-    const movie = await Movie.findOne({id: result.id})
-    if(!movie){
+    const movie = await Movie.findOne({ id: result.id }) as RevMovieType | null
+    if (!movie) {
         await Movie.create({
             title: result.title,
             id: result.id,
@@ -37,31 +37,28 @@ router.post('/', verify(revZodSchema), async (req: Request, res: Response) =>{
         }) as RevMovieType
         return res.sendStatus(200)
     }
-    
-    await Movie.findOneAndUpdate({id: result.id}, {$push: {reviews:[result.review]}})
-    res.sendStatus(201)
+
+    await Movie.findOneAndUpdate({ id: result.id }, { $push: { reviews: [result.review] } })
+    res.sendStatus(200)
 })
 
-router.get('/movies', verify(findMovieSchema), async (req: Request, res: Response)=>{
-    const result = req.body.id as number
-    try{
-        const movie = await Movie.findOne({id: result})
-        return res.json(movie)
-    } catch(err: any){
-        console.log(err.message);
+router.get('/movies', async (req: Request, res: Response) => {
+    if (req.query.id) {
+        const id = parseInt(req.query.id as string)
+        if(!id) return res.sendStatus(400)
+
+        const movie = await Movie.findOne({ id })
+        if (!movie) return res.sendStatus(404)
+        res.json(movie)
     }
 })
-router.get('/reviewer', verify(findReviewerSchema), async (req: Request, res: Response)=>{
+
+router.get('/reviewer', verify(findReviewerSchema), async (req: Request, res: Response) => {
     const result = req.body.name as string
-    try{
-        const movie = await Movie.find({"reviews.reviewer": result})
-        return res.json(movie)
-    } catch(err: any){
-        console.log(err.message);
-    }
+    const movie = await Movie.find({ "reviews.reviewer": result })
+    if (!movie.length) return res.sendStatus(404)
+    res.json(movie)
 })
-
-
 
 
 export default router
