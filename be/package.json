@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "npx tsc",
-    "start": "node dist/server.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/server.js\""
+    "start": "node dist/start.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/start.js\""
   },
   "keywords": [],
   "author": "",
@@ -16,10 +16,14 @@
     "@types/axios": "^0.14.0",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.0",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.15.10",
+    "@types/supertest": "^2.0.12",
     "concurrently": "^7.6.0",
+    "jest": "^29.5.0",
     "nodemon": "^2.0.22",
+    "supertest": "^6.3.3",
     "typescript": "^5.0.2"
   },
   "dependencies": {

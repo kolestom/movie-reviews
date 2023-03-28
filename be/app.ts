@@ -16,10 +16,6 @@ app.use('/api/reviews', reviews)
 
 
 mongoose.connect(env.MONGO_URL)
-.then(()=>{
-  console.log('MongoDB is on');
-  app.listen(env.PORT, () => console.log(`Server running at port ${env.PORT} for Movie reviews`)) 
-})
-.catch((err: unknown) =>{
-  console.log('MongoDB connection error: ', err);
-})
+
+
+export default app

@@ -22,9 +22,6 @@ const Payload = z.object({
 });
 type Payload = z.infer<typeof Payload>;
 
-
-
-
 router.post("/", verify(LoginRequestSchema), async (req: Request, res: Response) => {
 
   const loginRequest = req.body as LoginRequest
@@ -39,10 +36,10 @@ router.post("/", verify(LoginRequestSchema), async (req: Request, res: Response)
   
   const data = result
   const user = await User.findOne({sub: data.sub}) as UserType | null
-  console.log(user);
+
   
   if (!user) {
-    const newUser = await User.create(data)
+    const newUser = await User.create(data) as UserType
     const sessionToken = jwt.sign({newUser}, env.JWT_SECRET_KEY);
     return res.send(sessionToken);
   }  
