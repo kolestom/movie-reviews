@@ -53,11 +53,20 @@ router.get('/movies', async (req: Request, res: Response) => {
     }
 })
 
-router.get('/reviewer', verify(findReviewerSchema), async (req: Request, res: Response) => {
-    const result = req.body.name as string
-    const movie = await Movie.find({ "reviews.reviewer": result })
-    if (!movie.length) return res.sendStatus(404)
-    res.json(movie)
+// router.get('/reviewer', verify(findReviewerSchema), async (req: Request, res: Response) => {
+//     const result = req.body.name as string
+//     const movie = await Movie.find({ "reviews.reviewer": result })
+//     if (!movie.length) return res.sendStatus(404)
+//     res.json(movie)
+// })
+router.get('/reviewer', async (req: Request, res: Response) => {
+    if (req.query.name) {
+        const name = req.query.name
+
+        const movies = await Movie.find({ "reviews.reviewer": name })
+        if (!movies.length) return res.sendStatus(404)
+        res.json(movies)
+    }
 })
 
 
