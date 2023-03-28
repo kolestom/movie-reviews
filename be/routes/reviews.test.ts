@@ -11,7 +11,7 @@ dotenv.config()
 
 const request = supertest(app)
 
-describe('Testing the /reviews/review POST endpoint', () => {
+describe('Testing the /reviews/review endpoint', () => {
   let con: MongoClient
   let mongoServer: MongoMemoryServer
 
@@ -31,6 +31,11 @@ describe('Testing the /reviews/review POST endpoint', () => {
 
   it("should return 200 if movie doesn't exist in db", async () => {
 
+    const db = con.db(mongoServer.instanceInfo!.dbName)
+
+    expect(db).toBeDefined()
+    const col = db.collection('test')
+
     //given
     const testData = {
       title: "KOKAIN MACI",
@@ -44,7 +49,7 @@ describe('Testing the /reviews/review POST endpoint', () => {
     }
 
     //when
-    const response = await request.post("/api/reviews").send(testData)
+    const response = await request.post("/api/reviews").send(testData) // ! a db logika az igaziban van, hogy váltjuk ki az in-memoryval?
 
     //then
     expect(response.status).toBe(200)
