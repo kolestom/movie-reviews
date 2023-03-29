@@ -8,7 +8,7 @@ import app from '../app';
 
 describe('Name Target Controller', () => {
   beforeAll(connect);
-  // beforeEach(cleanData);
+  beforeEach(cleanData);
   afterAll(disconnect);
 
   it("should return 200 if movie doesn't exist in db", async () => {
@@ -22,7 +22,7 @@ describe('Name Target Controller', () => {
         text: "egy szar",
       },
     }
-    const response = await request(app).post("/api/reviews").send(testData) // ! a db logika az igaziban van, hogy váltjuk ki az in-memoryval?
+    const response = await request(app).post("/api/reviews").send(testData) 
     expect(response.status).toBe(200)
 
 })
@@ -37,8 +37,8 @@ it("should return 200 if movie doesn't exist in db", async () => {
       text: "egy szar",
     },
   }
-  const response = await request(app).post("/api/reviews").send(testData) // ! a db logika az igaziban van, hogy váltjuk ki az in-memoryval?
-  expect(response.status).toBe(201)
+  const response = await request(app).post("/api/reviews").send(testData) 
+  expect(response.status).toBe(200)
 
 })
 })

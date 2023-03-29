@@ -39,7 +39,7 @@ router.post('/', verify(revZodSchema), async (req: Request, res: Response) => {
     }
 
     await Movie.findOneAndUpdate({ id: result.id }, { $push: { reviews: [result.review] } })
-    res.sendStatus(201)
+    res.sendStatus(200)
 })
 
 router.get('/movies', async (req: Request, res: Response) => {

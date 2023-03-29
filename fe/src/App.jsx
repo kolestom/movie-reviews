@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
-import RootLayout from '../pages/RootLayout'
-import LoginPage from '../pages/LoginPage'
-import CallbackPage from '../pages/CallbackPage'
+import RootLayout from './pages/RootLayout'
+import CallbackPage from './pages/CallbackPage'
+import Dashboard from './pages/Dashboard'
 
 const router = createBrowserRouter([
   {
@@ -10,9 +10,8 @@ const router = createBrowserRouter([
     element: <RootLayout/>,
     children: [
       {
-        // path: 'login',
         index: true,
-        element: <LoginPage/>
+        element:<Dashboard />
       },
       {
         path: 'callback',

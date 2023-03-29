@@ -1,0 +1,14 @@
+.mainDiv{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 8rem;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 70%;
+}
