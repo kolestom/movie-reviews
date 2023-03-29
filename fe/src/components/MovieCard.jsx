@@ -16,7 +16,7 @@ import {
 import MovieDrawer from './MovieDrawer'
 
 
-function MovieCard({ movie }) {
+function MovieCard({ movie, isLoggedIn }) {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
@@ -41,7 +41,7 @@ function MovieCard({ movie }) {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <MovieDrawer {...{onClose, movie}}/>
+          <MovieDrawer {...{onClose, movie, isLoggedIn}}/>
 
           
             

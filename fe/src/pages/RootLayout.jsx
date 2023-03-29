@@ -9,7 +9,7 @@ const RootLayout = () => {
     return (
         <>
             <Header {... { isLoggedIn, setIsLoggedIn }} />
-            <Outlet context={[setIsLoggedIn]} />
+            <Outlet context={[isLoggedIn, setIsLoggedIn]} />
         </>
     );
 }

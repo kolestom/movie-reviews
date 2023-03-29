@@ -8,7 +8,7 @@ import { useOutletContext } from "react-router-dom";
 const CallbackPage = () => {
 
     const navigate = useNavigate()
-    const [setIsLoggedIn] = useOutletContext()
+    const [isLoggedIn, setIsLoggedIn] = useOutletContext()
 
     useEffect(() => {
 

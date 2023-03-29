@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Review from "./Review";
-const MovieDrawer = ({onClose, movie}) => {
+
+
+const MovieDrawer = ({onClose, movie, isLoggedIn}) => {
     const [reviews, setReviews] = useState([]);
     const [newReview, setNewReview] = useState('');
 
@@ -13,7 +15,10 @@ const MovieDrawer = ({onClose, movie}) => {
         }
         getMovie()
     },[])
-
+    // const handleInput = (e) => {
+        
+    //     newReview.length>1 ? setIsDisabled(true) : setIsDisabled(false)
+    // }
     const saveHandler = async() => {
         const response = await axios.post('http://localhost:3004/api/reviews', {
             
@@ -26,16 +31,25 @@ const MovieDrawer = ({onClose, movie}) => {
                     text: newReview,
                 }
             })
+            setNewReview('')
             console.log("review iras sikeres-e",response.data)
     }
-    return ( 
-        <>
-        {reviews.length>0 && reviews.map((review, i) => <Review key={i}{...{review}}/>)}
-        <input type="text" value={newReview} placeholder='Write new review'onInput={(e)=>setNewReview(e.target.value)}/>
-        <button onClick={saveHandler}>Save review</button>
+    return (
+      <>
+        {reviews.length > 0 &&
+          reviews.map((review, i) => <Review key={i} {...{ review }} />)}
+        {isLoggedIn && (
+          <input
+            type="text"
+            value={newReview}
+            placeholder="Write a review"
+            onInput={(e) => setNewReview(e.target.value)}
+          />
+        )}
+        {isLoggedIn && <button disabled={newReview.length>1 ? false : true} onClick={saveHandler}>Save review</button>}
         <button onClick={onClose}>Close Drawer</button>
-        </>
-     );
+      </>
+    );
 }
  
 export default MovieDrawer;
