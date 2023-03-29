@@ -19,7 +19,7 @@ const router = createBrowserRouter([
         element: <CallbackPage/>
       },
       {
-        path: 'filmek/:movie-title',
+        path: '/movie-title',
         element: <MovieDetails/>
       }
     ]

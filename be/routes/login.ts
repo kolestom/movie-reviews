@@ -41,9 +41,9 @@ router.post("/", verify(LoginRequestSchema), async (req: Request, res: Response)
   if (!user) {
     const newUser = await User.create(data) as UserType
     const sessionToken = jwt.sign({newUser}, env.JWT_SECRET_KEY);
-    return res.send(sessionToken);
+    return res.send({sessionToken, username: newUser.name});
   }  
   const sessionToken = jwt.sign({user}, env.JWT_SECRET_KEY);
-  res.send(sessionToken);
+  res.send({sessionToken, username: user.name});
 });
 export default router;

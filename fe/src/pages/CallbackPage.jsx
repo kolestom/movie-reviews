@@ -17,7 +17,8 @@ const CallbackPage = () => {
 
         const init = async () => {
             const data = await sendCode(code)
-            localStorage.setItem("token", data)
+            localStorage.setItem("token", data.sessionToken)
+            localStorage.setItem("user", data.username)
             setIsLoggedIn(true)
             navigate("/")
         }
