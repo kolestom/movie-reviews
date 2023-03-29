@@ -14,19 +14,7 @@ const MovieDrawer = ({onClose, movie}) => {
         getMovie()
     },[])
 
-    const object = {title: movie.title,
-        id: movie.id,
-        poster_path: movie.poster_path,
-        adult: movie.adult,
-        review: {
-            reviewer: localStorage.getItem('username'),
-            text: newReview}}
-            
-    console.log(object);
-
-
     const saveHandler = async() => {
-        
         const response = await axios.post('http://localhost:3004/api/reviews', {
             
                 title: movie.title,
@@ -34,14 +22,12 @@ const MovieDrawer = ({onClose, movie}) => {
                 poster_path: movie.poster_path,
                 adult: movie.adult,
                 review: {
-                    reviewer: localStorage.getItem('username'),
+                    reviewer: localStorage.getItem('user'),
                     text: newReview,
                 }
             })
-            console.log(response.data)
+            console.log("review iras sikeres-e",response.data)
     }
-    
-    console.log(reviews);
     return ( 
         <>
         {reviews.length>0 && reviews.map((review, i) => <Review key={i}{...{review}}/>)}

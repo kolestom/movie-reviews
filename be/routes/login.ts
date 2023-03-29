@@ -17,6 +17,7 @@ const LoginRequestSchema = z.object({
 type LoginRequest = z.infer<typeof LoginRequestSchema>;
   
 const Payload = z.object({
+  name: z.string(),
   sub: z.string(),
   email: z.string().email(),
 });
