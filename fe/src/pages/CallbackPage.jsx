@@ -1,31 +1,35 @@
 // import axios from "axios";
 import { useEffect } from "react";
 import sendCode from "../util/sendCode";
+import { useNavigate } from "react-router-dom"
+import { useOutletContext } from "react-router-dom";
+
 
 const CallbackPage = () => {
-    
+
+    const navigate = useNavigate()
+    const [setIsLoggedIn] = useOutletContext()
 
     useEffect(() => {
-        
+
         const urlSearchParams = new URLSearchParams(window.location.search)
         const code = urlSearchParams.get("code")
-        console.log(code);
-        
-        const init = async () =>{
 
+        const init = async () => {
             const data = await sendCode(code)
-            console.log(data);
-            
+            localStorage.setItem("token", data)
+            setIsLoggedIn(true)
+            navigate("/")
         }
         init()
     }, []);
 
-    
-    return ( 
+
+    return (
         <>
             <h2>Callback Page</h2>
         </>
-     );
+    );
 }
- 
+
 export default CallbackPage;

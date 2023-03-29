@@ -14,12 +14,11 @@ const Dashboard = () => {
         }
         init()
     },[])
-    console.log(topMovies)
     return ( 
         <div className={styles.mainDiv}>
         <div className={styles.container}>
             {topMovies.length>0 && topMovies.map(movie =>{
-            return  <MovieCard {...{movie}} />
+            return  <MovieCard key={movie.id} {...{movie}} />
             })}
         </div>
         </div>
