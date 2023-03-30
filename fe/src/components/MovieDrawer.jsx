@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Button, Input } from '@chakra-ui/react'
 import axios from "axios";
 import Review from "./Review";
 import styles from "./MovieDrawer.module.css";
@@ -10,17 +11,14 @@ const MovieDrawer = ({ onClose, movie, isLoggedIn }) => {
   useEffect(() => {
     const getMovie = async () => {
       const data = await axios.get(
-        `http://localhost:3004/api/reviews/movies?id=${movie.id}`
+        `https://movie-reviews-znfor.ondigitalocean.app/api/reviews/movies?id=${movie.id}`
       );
 
       setReviews(data.data.reviews);
     };
     getMovie();
   }, []);
-  // const handleInput = (e) => {
 
-  //     newReview.length>1 ? setIsDisabled(true) : setIsDisabled(false)
-  // }
   const saveHandler = async () => {
     const response = await axios.post("http://localhost:3004/api/reviews", {
       title: movie.title,
@@ -35,6 +33,7 @@ const MovieDrawer = ({ onClose, movie, isLoggedIn }) => {
     setNewReview("");
     console.log("review iras sikeres-e", response.data);
   };
+
   return (
     <div
       style={{
@@ -45,46 +44,51 @@ const MovieDrawer = ({ onClose, movie, isLoggedIn }) => {
       }}
       className={styles.drawerBackground}
     >
+      {/* <button onClick={onClose}>Close Drawer</button> */}
       <div className={styles.drawerContainer}>
+
+
         <div className={styles.leftReviews}>
-          
-            
-              <img
-                src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`}
-                alt=""
-                />
-                <h4>{movie.title}</h4>
-                <h4>{movie.release_date}</h4>
-                <h4>{movie.vote_average}</h4>
-                <h4>{movie.overview}</h4>
-                
-    
-          
+          <img
+            src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`}
+            alt=""
+          />
+          <h3>{movie.title}</h3>
+          <h4> <strong>Release date:</strong> {movie.release_date}</h4>
+          <h5> <strong>Avereage vote:</strong> {movie.vote_average}</h5>
+          <p>{movie.overview}</p>
         </div>
+
+
         <div className={styles.rightReviews}>
-            <h2>Reviews</h2>
+          <h2>Reviews</h2>
           <div className={styles.oldReviews}>
             {reviews.length > 0 &&
               reviews.map((review, i) => <Review key={i} {...{ review }} />)}
           </div>
           {isLoggedIn && (
-            <input
+            <Input
               type="text"
               value={newReview}
               placeholder="Write a review"
               onInput={(e) => setNewReview(e.target.value)}
+              width='100%'
             />
           )}
           {isLoggedIn && (
-            <button
+            <Button
               disabled={newReview.length > 1 ? false : true}
               onClick={saveHandler}
+              colorScheme="green"
+              variant="solid"
             >
               Save review
-            </button>
+            </Button>
           )}
-          <button onClick={onClose}>Close Drawer</button>
+
         </div>
+
+
       </div>
     </div>
   );

@@ -1,14 +1,25 @@
-.drawerBackground{
+.drawerBackground {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.drawerContainer{
- display: flex;
- width: 90%;
 
+.drawerBackground button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: azure;
 }
-.leftReviews{
+
+
+.drawerContainer {
+    display: flex;
+    width: 90%;
+}
+
+
+
+.leftReviews {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,37 +27,78 @@
     width: 45%;
     color: aliceblue;
 }
-.leftReviews img{
+
+.leftReviews img {
     width: 100%;
     align-self: flex-start;
 }
 
-.leftReviews h4{
+.leftReviews h3 {
+    align-self: flex-start;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: rgb(214, 235, 255);
     padding-top: 0.4rem 0;
 }
 
+.leftReviews h4 {
+    align-self: flex-start;
+    color: rgb(214, 235, 255);
+    font-size: 0.95rem;
+    padding-top: 0.4rem 0;
+}
 
-.rightReviews{
+.leftReviews h5 {
+    align-self: flex-start;
+    color: rgb(214, 235, 255);
+    font-size: 0.95rem;
+    padding-top: 0.4rem 0;
+}
+
+.leftReviews p {
+    align-self: flex-start;
+    line-height: 120%;
+    margin-top: 1rem;
+    padding-top: 0.4rem 0;
+    color: rgb(214, 235, 255);
+}
+
+
+.rightReviews {
     display: flex;
     flex-direction: column;
     padding: 1rem;
     width: 55%;
     color: aliceblue;
 }
-.oldReviews{
-    width: 50%;
+
+.rightReviews h2 {
+    color: rgb(214, 235, 255);
+    translate: 0 -0.7rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.rightReviews input {
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+}
+
+.oldReviews {
+    width: 100%;
+    margin-bottom: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 3rem;
+    gap: 0.5rem;
     color: aliceblue;
 }
 
-.DDDdrawerBox {
+/* .DDDdrawerBox {
     background-color: aqua;
     height: 100%;
-    min-height:100%;
-    background:linear-gradient(0deg, #032541ec, #032541d5), url(https://picsum.photos/id/1043/800/600);
-    background-size:cover;
-}
+    min-height: 100%;
+    background: linear-gradient(0deg, #032541ec, #032541d5), url(https://picsum.photos/id/1043/800/600);
+    background-size: cover;
+} */
