@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Review from "./Review";
+import styles from "./MovieDrawer.module.css"
 
 
 const MovieDrawer = ({onClose, movie, isLoggedIn}) => {
@@ -36,8 +37,11 @@ const MovieDrawer = ({onClose, movie, isLoggedIn}) => {
     }
     return (
       <>
+      <div className={styles.oldReviews}>
+
         {reviews.length > 0 &&
           reviews.map((review, i) => <Review key={i} {...{ review }} />)}
+      </div>
         {isLoggedIn && (
           <input
             type="text"

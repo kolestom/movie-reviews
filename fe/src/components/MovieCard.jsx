@@ -36,7 +36,7 @@ function MovieCard({ movie, isLoggedIn }) {
         placement='right'
         onClose={onClose}
         finalFocusRef={btnRef}
-        
+        size={'xl'}
       >
         <DrawerOverlay />
         <DrawerContent>
