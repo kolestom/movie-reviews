@@ -25,6 +25,9 @@ const MovieDrawer = ({ onClose, movie, isLoggedIn }) => {
       id: movie.id,
       poster_path: movie.poster_path,
       adult: movie.adult,
+      release_date: movie.release_date,
+      overview: movie.overview,
+      vote_average: movie.vote_average,
       review: {
         reviewer: localStorage.getItem("user"),
         text: newReview,
