@@ -26,7 +26,7 @@ router.post('/', verify(revZodSchema), async (req: Request, res: Response) => {
     const result = req.body as revZodSchemaType
     const movie = await Movie.findOne({ id: result.id }) as RevMovieType | null
     if (!movie) {
-        await Movie.create({
+        const newMovie = await Movie.create({
             title: result.title,
             id: result.id,
             poster_path: result.poster_path,
@@ -35,11 +35,11 @@ router.post('/', verify(revZodSchema), async (req: Request, res: Response) => {
                 result.review
             ]
         }) as RevMovieType
-        return res.sendStatus(200)
+        return res.send(newMovie)
     }
 
-    await Movie.findOneAndUpdate({ id: result.id }, { $push: { reviews: [result.review] } })
-    res.sendStatus(200)
+    const updatedMovie = await Movie.findOneAndUpdate({ id: result.id }, { $push: { reviews: [result.review] } })
+    res.send(updatedMovie)
 })
 
 router.get('/movies', async (req: Request, res: Response) => {
@@ -49,16 +49,11 @@ router.get('/movies', async (req: Request, res: Response) => {
 
         const movie = await Movie.findOne({ id })
         if (!movie) return res.sendStatus(404)
-        res.json(movie)
+        return res.json(movie)
     }
+    res.send([])
 })
 
-// router.get('/reviewer', verify(findReviewerSchema), async (req: Request, res: Response) => {
-//     const result = req.body.name as string
-//     const movie = await Movie.find({ "reviews.reviewer": result })
-//     if (!movie.length) return res.sendStatus(404)
-//     res.json(movie)
-// })
 router.get('/reviewer', async (req: Request, res: Response) => {
     if (req.query.name) {
         const name = req.query.name

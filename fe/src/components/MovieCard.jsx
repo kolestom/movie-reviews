@@ -40,14 +40,8 @@ function MovieCard({ movie, isLoggedIn }) {
       >
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton />
+          <DrawerCloseButton color="white" variant="solid"/>
           <MovieDrawer {...{onClose, movie, isLoggedIn}}/>
-
-          <DrawerFooter>
-            <Button mr={3} onClick={onClose} colorScheme="red" variant="solid">
-              Cancel
-            </Button>
-          </DrawerFooter>
             
         </DrawerContent>
       </Drawer>
