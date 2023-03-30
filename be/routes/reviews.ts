@@ -62,11 +62,12 @@ router.get('/movies', async (req: Request, res: Response) => {
 router.get('/reviewer', async (req: Request, res: Response) => {
     if (req.query.name) {
         const name = req.query.name
-
-        const movies = await Movie.find({ "reviews.reviewer": name })
+        // User.find({ username: {$regex : "^" + req.params.username}});
+        const movies = await Movie.find({ "reviews.reviewer": {$regex : "^" + name} })
         if (!movies.length) return res.sendStatus(404)
-        res.json(movies)
+        return res.json(movies)
     }
+    res.send([])
 })
 
 

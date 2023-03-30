@@ -7,20 +7,14 @@ import { useOutletContext } from "react-router-dom";
 
 const Dashboard = () => {
 
-    const [topMovies, setTopMovies] = useState([]);
-    const [isLoggedIn] = useOutletContext()
+    
+    const [isLoggedIn, setIsLoggedIn, movieList, setMovieList] = useOutletContext()
 
-    useEffect(()=>{
-        const init = async()=>{
-            const result = await getMovies()
-            setTopMovies(result)
-        }
-        init()
-    },[])
+    
     return ( 
         <div className={styles.mainDiv}>
         <div className={styles.container}>
-            {topMovies.length>0 && topMovies.map(movie =>(
+            {movieList.length>0 && movieList.map(movie =>(
 
                <MovieCard key={movie.id}{...{movie, isLoggedIn}} />
             )

@@ -1,7 +1,52 @@
+.drawerBackground{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.drawerContainer{
+ display: flex;
+ width: 90%;
+
+}
+.leftReviews{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    width: 45%;
+    color: aliceblue;
+}
+.leftReviews img{
+    width: 100%;
+    align-self: flex-start;
+}
+
+.leftReviews h4{
+    padding-top: 0.4rem 0;
+}
+
+
+.rightReviews{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 55%;
+    color: aliceblue;
+}
 .oldReviews{
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     gap: 3rem;
+    color: aliceblue;
+}
+
+.DDDdrawerBox {
+    background-color: aqua;
+    height: 100%;
+    min-height:100%;
+    background:linear-gradient(0deg, #032541ec, #032541d5), url(https://picsum.photos/id/1043/800/600);
+    background-size:cover;
 }

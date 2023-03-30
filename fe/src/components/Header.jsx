@@ -1,9 +1,13 @@
 import { FcGoogle } from "react-icons/fc";
 import { Button, Input } from '@chakra-ui/react'
 import styles from './Header.module.css'
+import axios from "axios";
+import { useState } from "react";
 
 
-const Header = ({ isLoggedIn, setIsLoggedIn }) => {
+const Header = ({ isLoggedIn, setIsLoggedIn, setMovieList }) => {
+
+ 
 
   const url = "https://accounts.google.com/o/oauth2/v2/auth"
   const client_id = "169346533635-mt05gutaslpavfvje15a1hnjauudu3tc.apps.googleusercontent.com"
@@ -22,6 +26,18 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
     setIsLoggedIn(false)
   }
 
+  const movieInputHandler = async(e) => {
+    const result = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=fe81cd2556cf074a1a365d166ccba87c&language=en-US&query=${e.target.value}&page=1&include_adult=false`)
+    // setSearch(e.target.value)
+    setMovieList(result.data.results)
+  }
+  
+  
+  const reviewerInputHandler = async(e) => {
+    const result = await axios.get(`http://localhost:3004/api/reviews/reviewer?name=${e.target.value}`)
+    console.log(result.data);
+    setMovieList(result.data)
+  }
   return (
     <div className={styles.headerContainer}>
       <img
@@ -30,10 +46,11 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
         className={styles.logoImg}
       />
       <div className={styles.rightHeaderDiv}>
-        <Input placeholder='Search Films' width='300px' />
+        {isLoggedIn && <Input onInput={(e)=>reviewerInputHandler(e)} color='white' placeholder='Search Reviewer' _placeholder={{ opacity: 0.4, color: 'inherit' }} width='200px' />}
+        <Input onInput={(e)=>movieInputHandler(e)} color='white' placeholder='Search Films' _placeholder={{ opacity: 0.4, color: 'inherit' }}width='200px' />
         {isLoggedIn ?
-          <Button onClick={handleLogout} leftIcon={<FcGoogle />} colorScheme="pink" variant="solid">Logout</Button> :
-          <Button onClick={handleLogin} leftIcon={<FcGoogle />} colorScheme="pink" variant="solid">Login</Button>
+          <Button onClick={handleLogout} colorScheme="blue" variant="solid">Logout</Button> :
+          <Button onClick={handleLogin} leftIcon={<FcGoogle />} colorScheme="gray" variant="solid">Login</Button>
         }
 
       </div>
