@@ -30,6 +30,11 @@ const MovieDrawer = ({ onClose, movie, isLoggedIn }) => {
         text: newReview,
       },
     });
+    const data = await axios.get(
+      `https://movie-reviews-znfor.ondigitalocean.app/api/reviews/movies?id=${movie.id}`
+    );
+
+    setReviews(data.data.reviews);
     setNewReview("");
     console.log("review iras sikeres-e", response.data);
   };
@@ -63,8 +68,8 @@ const MovieDrawer = ({ onClose, movie, isLoggedIn }) => {
         <div className={styles.rightReviews}>
           <h2>Reviews</h2>
           <div className={styles.oldReviews}>
-            {reviews.length > 0 &&
-              reviews.map((review, i) => <Review key={i} {...{ review }} />)}
+            {reviews.length > 0 ?
+              reviews.map((review, i) => <Review key={i} {...{ review }} />) : <h3>No reviews yet.</h3>}
           </div>
           {isLoggedIn && (
             <Input

@@ -27,7 +27,7 @@ function MovieCard({ movie, isLoggedIn }) {
     
       <div className={styles.card} onClick={onOpen}>
         <img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`} alt="" />
-        <div>{movie.vote_average}</div>
+        <div>{Math.round(movie.vote_average * 10) / 10}</div>
         <h4>{movie.title}</h4>
         <p>Released: {movie.release_date}</p>
       </div>

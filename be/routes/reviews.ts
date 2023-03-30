@@ -11,6 +11,9 @@ const revZodSchema = z.object({
     id: z.number(),
     poster_path: z.string(),
     adult: z.boolean(),
+    release_date: z.string(),
+    overview: z.string(),
+    vote_average: z.number(),
     review: z.object({
         reviewer: z.string(), // name
         text: z.string(),
@@ -31,6 +34,9 @@ router.post('/', verify(revZodSchema), async (req: Request, res: Response) => {
             id: result.id,
             poster_path: result.poster_path,
             adult: result.adult,
+            release_date: result.release_date,
+            overview: result.overview,
+            vote_average: result.vote_average,
             reviews: [
                 result.review
             ]
