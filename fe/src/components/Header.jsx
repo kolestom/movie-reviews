@@ -34,7 +34,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn, setMovieList }) => {
   
   
   const reviewerInputHandler = async(e) => {
-    const result = await axios.get(`http://localhost:3004/api/reviews/reviewer?name=${e.target.value}`)
+    const result = await axios.get(`https://movie-reviews-znfor.ondigitalocean.app/api/reviews/reviewer?name=${e.target.value}`)
     console.log(result.data);
     setMovieList(result.data)
   }
@@ -45,6 +45,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn, setMovieList }) => {
         alt=""
         className={styles.logoImg}
       />
+      {isLoggedIn && <div className={styles.user}>Hi, {localStorage.getItem('user')}</div>}
       <div className={styles.rightHeaderDiv}>
         {isLoggedIn && <Input onInput={(e)=>reviewerInputHandler(e)} color='white' placeholder='Search Reviewer' _placeholder={{ opacity: 0.4, color: 'inherit' }} width='200px' />}
         <Input onInput={(e)=>movieInputHandler(e)} color='white' placeholder='Search Films' _placeholder={{ opacity: 0.4, color: 'inherit' }}width='200px' />
