@@ -17,6 +17,9 @@ describe('Name Target Controller', () => {
       id: 12345,
       poster_path: "KEP.jpg",
       adult: true,
+      release_date: "2022-12-12",
+      overview: "Awesome movie description",
+      vote_average: 8,
       review: {
         reviewer: "Mikorka Kálmán",
         text: "egy szar",
@@ -32,6 +35,9 @@ it("should return 200 if movie doesn't exist in db", async () => {
     id: 12345,
     poster_path: "KEP.jpg",
     adult: true,
+    release_date: "2022-12-12",
+    overview: "Awesome movie description",
+    vote_average: 8,
     review: {
       reviewer: "Mikorka Kálmán",
       text: "egy szar",

@@ -1,8 +1,6 @@
 import { useEffect,useState } from 'react';
-import {getMovies} from '../api/getMovies'
 import MovieCard from '../components/MovieCard';
 import styles from './Dashboard.module.css'
-import { Link } from 'react-router-dom';
 import { useOutletContext } from "react-router-dom";
 import { useToast } from '@chakra-ui/react'
 
@@ -15,7 +13,7 @@ const Dashboard = () => {
     useEffect(()=>{
         if (isLoggedIn) toast({
             title: 'Login successful',
-            description: "Feel free to search and reviews",
+            description: "Feel free to search and write reviews",
             status: 'success',
             duration: 9000,
             isClosable: true,

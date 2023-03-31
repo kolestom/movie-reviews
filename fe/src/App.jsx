@@ -3,7 +3,6 @@ import './App.css'
 import RootLayout from './pages/RootLayout'
 import CallbackPage from './pages/CallbackPage'
 import Dashboard from './pages/Dashboard'
-import MovieDetails from './pages/MovieDetails'
 
 const router = createBrowserRouter([
   {
@@ -17,10 +16,6 @@ const router = createBrowserRouter([
       {
         path: 'callback',
         element: <CallbackPage/>
-      },
-      {
-        path: '/movie-title',
-        element: <MovieDetails/>
       }
     ]
   }
