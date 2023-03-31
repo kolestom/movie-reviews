@@ -5,6 +5,7 @@ const revMovieSchema = new Schema({
     title: String,
     id: Number, //  id from API
     poster_path: String,
+    backdrop_path: String,
     adult: Boolean,
     release_date: String,
     overview: String,

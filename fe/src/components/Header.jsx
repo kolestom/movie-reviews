@@ -34,7 +34,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn, setMovieList }) => {
   
   
   const reviewerInputHandler = async(e) => {
-    const result = await axios.get(`https://movie-reviews-znfor.ondigitalocean.app/api/reviews/reviewer?name=${e.target.value}`)
+    const result = await axios.get(`https://movie-reviews-n2gux.ondigitalocean.app/api/reviews/reviewer?name=${e.target.value}`)
     console.log(result.data);
     setMovieList(result.data)
   }

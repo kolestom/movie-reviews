@@ -11,7 +11,7 @@ const MovieDrawer = ({ onClose, movie, isLoggedIn }) => {
   useEffect(() => {
     const getMovie = async () => {
       const data = await axios.get(
-        `https://movie-reviews-znfor.ondigitalocean.app/api/reviews/movies?id=${movie.id}`
+        `https://movie-reviews-n2gux.ondigitalocean.app/api/reviews/movies?id=${movie.id}`
       );
 
       setReviews(data.data.reviews);
@@ -20,7 +20,7 @@ const MovieDrawer = ({ onClose, movie, isLoggedIn }) => {
   }, []);
 
   const saveHandler = async () => {
-    const response = await axios.post("https://movie-reviews-znfor.ondigitalocean.app/api/reviews", {
+    const response = await axios.post("https://movie-reviews-n2gux.ondigitalocean.app/api/reviews", {
       title: movie.title,
       id: movie.id,
       poster_path: movie.poster_path,
@@ -34,7 +34,7 @@ const MovieDrawer = ({ onClose, movie, isLoggedIn }) => {
       },
     });
     const data = await axios.get(
-      `https://movie-reviews-znfor.ondigitalocean.app/api/reviews/movies?id=${movie.id}`
+      `https://movie-reviews-n2gux.ondigitalocean.app/api/reviews/movies?id=${movie.id}`
     );
 
     setReviews(data.data.reviews);
