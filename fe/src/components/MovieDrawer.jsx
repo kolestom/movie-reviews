@@ -11,7 +11,7 @@ const MovieDrawer = ({ onClose, movie, isLoggedIn }) => {
   useEffect(() => {
     const getMovie = async () => {
       const data = await axios.get(
-        `https://movie-reviews-n2gux.ondigitalocean.app/api/reviews/movies?id=${movie.id}`
+        `http://localhost:3004/api/reviews/movies?id=${movie.id}`
       );
 
       setReviews(data.data.reviews);
@@ -20,21 +20,23 @@ const MovieDrawer = ({ onClose, movie, isLoggedIn }) => {
   }, []);
 
   const saveHandler = async () => {
-    const response = await axios.post("https://movie-reviews-n2gux.ondigitalocean.app/api/reviews", {
+    const response = await axios.post("http://localhost:3004/api/reviews", {
       title: movie.title,
       id: movie.id,
       poster_path: movie.poster_path,
+      backdrop_path: movie.backdrop_path,
       adult: movie.adult,
       release_date: movie.release_date,
       overview: movie.overview,
       vote_average: movie.vote_average,
       review: {
-        reviewer: localStorage.getItem("user"),
+        reviewer: localStorage.getItem("user"), // ezt nem kene kuldeni. Majd a BE fogja authMW-vel megtalalni sub alapjan,
+                                                // h ki is volt az iro.
         text: newReview,
       },
     });
     const data = await axios.get(
-      `https://movie-reviews-n2gux.ondigitalocean.app/api/reviews/movies?id=${movie.id}`
+      `http://localhost:3004/api/reviews/movies?id=${movie.id}`
     );
 
     setReviews(data.data.reviews);

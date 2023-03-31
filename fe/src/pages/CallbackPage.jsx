@@ -17,8 +17,8 @@ const CallbackPage = () => {
 
         const init = async () => {
             const data = await sendCode(code)
-            localStorage.setItem("token", data.sessionToken)
-            localStorage.setItem("user", data.username)
+            localStorage.setItem("token", data.sessionToken) // sub-ot, name-et ebbol kiszedni decode-utan
+            localStorage.setItem("user", data.username) // ez nem kell
             setIsLoggedIn(true)
             navigate("/")
         }

@@ -40,7 +40,7 @@ router.post('/', verify(revZodSchema), async (req: Request, res: Response) => {
             overview: result.overview,
             vote_average: result.vote_average,
             reviews: [
-                result.review
+                result.review // ebben a reviewer-t mi adjuk meg a sub kereses alapjan
             ]
         }) as RevMovieType
         return res.send(newMovie)

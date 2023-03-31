@@ -12,9 +12,9 @@ const revMovieSchema = new Schema({
     vote_average: Number,
     reviews: [
         {
-            reviewer: String, // name
+            reviewer: String, // name helyett sub kellene, amit auth-olok az auth MW-vel, A tokenbol fe-n kiszedett sub kell
             text: String,
-            // rating: Number
+            
         }
     ]
 })

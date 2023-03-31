@@ -12,6 +12,7 @@ describe('Name Target Controller', () => {
   afterAll(disconnect);
 
   it("should return 200 if movie doesn't exist in db", async () => {
+    // given 
     const testData = {
       title: "KOKAIN MACI 4",
       id: 12345,
@@ -25,11 +26,16 @@ describe('Name Target Controller', () => {
         text: "egy szar",
       },
     }
+
+    // when 
     const response = await request(app).post("/api/reviews").send(testData) 
+
+    // then
     expect(response.status).toBe(200)
 
 })
 it("should return 200 if movie doesn't exist in db", async () => {
+  // given 
   const testData = {
     title: "KOKAIN MACI 4",
     id: 12345,
@@ -43,8 +49,13 @@ it("should return 200 if movie doesn't exist in db", async () => {
       text: "egy szar",
     },
   }
-  const response = await request(app).post("/api/reviews").send(testData) 
-  expect(response.status).toBe(200)
+  await request(app).post("/api/reviews").send(testData) 
+  
+  // when
+  const response = await request(app).post("/api/reviews").send(testData) // ez lesz a 2. futas (update)
+
+  // then
+  expect(response.status).toBe(200) // DB-t meg a res.body-t is ellenorizni kene
 
 })
 })

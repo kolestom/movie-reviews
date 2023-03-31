@@ -36,7 +36,7 @@ router.post("/", verify(LoginRequestSchema), async (req: Request, res: Response)
   }
   
   const data = result
-  const user = await User.findOne({sub: data.sub}) as UserType | null
+  const user = await User.findOne({sub: data.sub})
 
   
   if (!user) {
