@@ -1,6 +1,6 @@
 on: push
 jobs:
-  build/container:
+  build-container:
     name: Build container
     runs-on: macos-latest
     steps:
